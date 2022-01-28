@@ -1,0 +1,4 @@
+^renv$
+^renv\.lock$
+^CGSC5901\.Rproj$
+^\.Rproj\.user$
