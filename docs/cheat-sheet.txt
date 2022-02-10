@@ -1,0 +1,168 @@
+Feb 10
+The reason .rda (also called .RData) are use in packaged data sets is because this type of data file format is much faster to read in than .csv files.
+
+Feb 7
+Convert a column from an integer to a factor variable
+df %>% mutate(across(a, as_factor)) # using dplyr
+OR
+df.mpg$cyl = as.factor(df.mpg$cyl) # using base r
+
+X-axis for box-plots of continuous variables
+geom_boxplot(aes(group = cut_width(cyl, 0.25))) # 0.25 are the breaks
+
+Own functions
+fun.whatever_function(x,y)
+
+Pipe operator shortcut
+cmd/ctrl + shift + m
+
+Retain only unique/distinct rows from an input
+dplyr::distinct()
+
+Exploratory data analysis
+library(visdat)
+visdat:$vis_dat(dataframe)
+
+Feb 4
+numbers = c(1, 4, 5) # make a vector
+numbers[c(1, 3)] # access the first and last element
+
+matrix = matrix(data = c(1, 2, 3, 4, 5, 6),
+                nrow = 3,
+                ncol = 2)
+matrix[-1, ] # a matrix which excludes the first row
+
+df = tibble(participant_id = c(1, 2, 3),
+            participant_name = c("Leia", "Luke", "Darth")) # make the data frame 
+df$participant_id # all participants
+df[["participant_id"]] # same as before but using [[]] instead of $
+Example
+df$participant_name[2] # name of the second participant
+df[["participant_name"]][2] # same as above
+
+Jan 31
+ggplot_build()
+take a look at the data frame that’s underlying the plot made using ggplot.
+
+gganimate
+To create animations. Eg. Below:
+labs(title = "Year: {frame_time}", x = "GDP per capita", y = "life expectancy") +
+  transition_time(year) +
+  ease_aes("linear")
+
+which(h %in% g)
+function to get indexes
+to Compare two Sequences of Numbers (vectors)/letters/factors
+
+“.$”
+to access a column
+
+.after argument
+to add the new column at a specific position 
+
+mutate(DeprIndex = sum(c_across(Depr1:Depr5)))
+to summarize the columns we selected using the c_across() function. 
+
+mutate(C = if_else(A == B, "Equal", "Not Equal"))
+creating a column to dataframe based on values in other columns:
+
+mutate(Status = case_when(
+    endsWith(ID, "R") ~ "Recovered",
+    endsWith(ID, "S") ~ "Sick"
+    ))
+if the factor ended with R the value in the new column will be “Recovered”
+
+
+
+home.dests <- c("St Louis, MO", "New York, NY", "Hudson, NY")
+# Subsetting using %in% in R:
+dataf %>%
+  filter(home.dest %in% home.dests)
+
+Above, we are filtering an entire dataset based on the vectors in a specified column
+
+
+# Drop columns using %in% operator in R
+dataf[, !(colnames(dataf) %in% c("pclass", "embarked", "boat"))]
+
+OR USING THE SELECT FUNCTION:
+using the select() function together with the pipe operator may result in a slightly more readable code.
+
+
+
+
+Jan 28
+stat_summary(fun = "mean",
+               geom = "bar")
+used the stat_summary() function to define what we want to plot (the “mean”), and how (as a “bar” chart)
+
+theme_set(theme_classic() + # set the theme
+            theme(text = element_text(size = 20))) # set the default text size
+
+stat_summary(fun.data = "mean_cl_boot", geom = "pointrange") 
+#95% CI around mean for scatter plot
+
+stat_summary(fun.data = "mean_cl_boot",
+               geom = "linerange")
+#95% CI around mean for bar plot
+
+Tip: If a function has more than two arguments put each argument on a new line.
+
+Re-indent the code
+cmd + i 
+
+Add new code chunks
+cmd + option + i
+
+geom_density()
+Instead of histograms, we can also plot a density fitted to the distribution.
+
+in separate panels
+facet_grid(cols = vars(color)) or facet_grid(rows = vars(color))
+
+ggplot(data = df.diamonds,
+       mapping = aes(x = carat,
+                     y = price,
+                     color = color)) + ## Global aesthetic
+  geom_point()
+
+ggplot(data = df.diamonds,
+       mapping = aes(x = carat,
+                     y = price)) +
+  geom_point(mapping = aes(color = color)) ## local aesthetic
+
+ggpol
+# for making fancy boxplots
+
+ggpol::geom_boxjitter
+displays a boxplot and the jittered data right next to each other.
+
+ggridges::geom_density_ridges()
+show the distributions along the x-axis 
+
+Raster plots
+stat_summary_2d(fun = "mean",
+                  geom = "tile",
+                  color = "black") +
+  scale_fill_gradient(low = "white", high = "black")
+
+# Reorder x axis first by cut, then by price
+ggplot(data = df.diamonds,
+       mapping = aes(x = reorder(cut, price), y = price))
+
+# Set the y-axis scales
+scale_y_continuous(breaks = seq(from=0, to=4000, by =2000),
+		labels = seq(from=0, to=4000, by =2000))
+
+# saving plots as pdf files allows the plot to looks good no matter
+what size you need it to be; also, can be embedded anywhere
+ggsave(filename = "figures/diamond_plot.pdf",
+       plot = p1,
+       width = 8,
+       height = 6)
+
+# combine the plots
+p1 + (p2 + p3) + 
+  plot_layout(ncol = 1) & ## From package patchwork
+  theme_classic() & 
+  theme(plot.tag = element_text(face = "bold", size = 20))
