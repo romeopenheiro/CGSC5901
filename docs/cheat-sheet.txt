@@ -1,3 +1,45 @@
+Feb 25
+Janitor::clean_names
+The function takes and returns a data frame for ease of piping with an operator
+
+Broom::augment
+Given a statistical mode, add columns to the original dataset such as predictions, residuals and cluster assignments
+
+
+
+Feb 20
+# Fit regression model
+lm(score ~ age * gender, data = evals_ch6) INTERACTION MODEL
+
+lm(score ~ age + gender, data = evals_ch6) PARALLEL MODEL
+Multiple lines with “parallel slopes” for numerical + categorial data
+
+lm(score ~ age + income, data = evals_ch6) regression plane
+One line with “parallel slopes” for numerical + numerical data
+
+compute a correlation matrix 
+credit_ch6 %>% 
+  select(debt, credit_limit, income) %>% 
+  cor()
+
+Feb 18
+summarize(correlation = cor(score, bty_avg))
+put the name of the outcome variable on the left-hand side; putting the name of the explanatory variable on the right-hand side
+This is known as R’s formula notation
+
+Add a line of best fit
+geom_smooth(method = "lm", se = FALSE)
+
+“linear model” and is used as follows: 
+lm(y ~ x, data = data_frame_name)
+The combination of y ~ x is called a model formula. INTERACTION MODEL
+
+look at a random sample of five 
+sample_n(size = 5)
+
+function takes in a data frame, “skims” it, and returns commonly used summary statistics.
+skimr::skim()
+
 Feb 10
 The reason .rda (also called .RData) are use in packaged data sets is because this type of data file format is much faster to read in than .csv files.
 
