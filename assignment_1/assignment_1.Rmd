@@ -96,7 +96,7 @@ In essence, words of low frequency (i.e., words that were used rarely) required 
 This suggested that word frequency is an important variable for models of word recognition.
 
 The current experiment is different from the original experiment in two ways.
-First, the experiment used a lexical decision task [@Meyer1971] instead of a threshold task.
+First, the experiment used a lexical decision task [@Meyer1971] instead of a threshold task that was used by Howes and Solomon [-@howes1951].
 Second, the experiment was conducted using a computer in an online setting.
 This design of experiment is preferable for two reasons.
 First, to use Howes and Solomon's [-@howes1951] task in an online setting.
@@ -139,6 +139,13 @@ One participant was excluded from the age and gender analysis due to incomplete 
 
 The experiment was created using [PsychoPy software](https://psychopy.org/index.html) [@peirce2019] and then converted to java script to run on [pavlovia](https://pavlovia.org).
 Also, the design of the experiment restricted use to laptops or desktop computers due to screen size limitations of smaller devices.
+
+## Stimuli
+
+60 words of 6-12 letters in length were used as stimuli for the `word` condition.
+Unlike Howes and Solomon's [-@howes1951] study that used the Thorndike-Lorge [-@thorndike1944] count values, the current study used word frequency values from Kucera and Francis [-@kuera1967], which is a more recent and widely-used word count.
+In addition, 60 non-words were used in the `non-word` condition.
+These were created by replacing the vowels in the words to create the non-words.
 
 ## Procedure
 
